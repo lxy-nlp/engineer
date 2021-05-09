@@ -78,3 +78,33 @@ https://blog.csdn.net/qq_35246620/article/details/79104520
 
 
 
+grep使用
+
+```shell
+
+```
+
+进程
+
+```python
+ps -u | grep key 查找当前用户下 包含key关键字的进程
+kill 进程号 杀死进程
+```
+
+
+
+## Git
+
+1. 全局配置
+
+   ```shell
+   git config 
+   ```
+
+   
+
+2. 版控操作
+
+3. .gitignore使用
+
+   

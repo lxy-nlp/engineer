@@ -194,6 +194,21 @@ my_ebike.describe_battery()
 my_ebike.wheel.describe_wheel()
 ```
 
+从控制台接收参数
+
+```python
+parser = argparse.ArgumentParser()
+parser.add_argument("--task", default="semeval", type=str, help="The name of the task to train")
+    parser.add_argument(
+        "--data_dir",
+        default="./data",
+        type=str,
+        help="The input data dir. Should contain the .tsv files (or other data files) for the task.",
+    )
+```
+
+
+
 ## 爬数据
 
 ### 网页
