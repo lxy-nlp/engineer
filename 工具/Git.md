@@ -2,7 +2,7 @@
 
 ```shell
 # 配置用户信息
-git config --global user.name "lxy"
+git config --global user.name "lxy-nlp"
 git config --global user.email "18261195602@163.com
 git config --list
 
@@ -54,6 +54,13 @@ git branch dev   # 创建分支
 git checkout dev # 切换分支
 git  branch --setupstream-to dev origin/dev #  将dev和远程的dev链接
 git push origin --delete HEAD # 删除分支
+1. 若远程是个新项目 则
+git push -u http://github.com/lxy-nlp/nlp.git master    第一次push，需要加上-u参数，把本地的master分支和远程的master分支进行关联，以后push则不需再加-u参数
+2. 若远程项目已经存在则使用
+git remote add origin http://github.com/lxy-nlp/test.git
+
+3. 推送一个已经存在的仓库到另一个仓库
+待学习
 
 ```
 
@@ -62,7 +69,7 @@ git push origin --delete HEAD # 删除分支
 ```shell
 # 主要是为了解决 .gitignore不生效的问题
 git rm -r --cached .   # 删除暂存区已经托管的文件
-git rm filepath           # 删除暂存区和工作区的文件
+git rm filepath        # 删除暂存区和工作区的文件
 git rm -r --cached <fold> 不删除本地文件
 
 git rm -r --f <fold> 删除本地文件
@@ -121,6 +128,21 @@ revert 之后你的本地代码会回滚到指定的历史版本,这时你再 gi
 第三:reset 是在正常的commit历史中,删除了指定的commit,这时 HEAD 是向后移动了,而 revert 是在正常的commit历史中再commit一次,只不过是反向提交,他的 HEAD 是一直向前的.
 
 ```
+
+### 冲突合并
+1、git add .
+
+2、git commit -m "***********"
+
+3、git pull --rebase
+
+（出现冲突，红色框提示冲突的文件。同时提示用户需要先解决这个冲突，然后用git rebase --continue继续）
+
+4、本地intellij解决冲突（冲突前的代码，会同时存在你和远端的代码），可以git status查看你当前处在REBASE的分支下。
+
+5、git add .
+
+6、git rebase --continue
 
 
 
