@@ -173,9 +173,19 @@ Note：有default值的时候，running时不声明就为默认值，
 
 
 
+位置编码 实体交互
+
+
+
+
+
 加pos的
 
 ![image-20210507194627126](/home/lxy/文档/学习笔记/img/image-20210507194627126.png)
+
+加入哈达玛乘积
+
+![image-20210511084036408](/home/lxy/.config/Typora/typora-user-images/image-20210511084036408.png)
 
 加了pos和哈达玛乘积的
 
