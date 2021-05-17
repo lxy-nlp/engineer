@@ -117,9 +117,9 @@ b) 特有功能
    ii. public Enumeration elements ()
 
     1. 也是用来遍历集合
-      2. boolean hasMoreElements()
-        3. Object nextElement()
-          4. 基本不用这个，都是直接用上面的迭代器实现遍历
+          2. boolean hasMoreElements()
+                3. Object nextElement()
+                      4. 基本不用这个，都是直接用上面的迭代器实现遍历
 
   1.2、LinkedList集合的特有功能
   a) 添加功能
@@ -139,8 +139,9 @@ b) 特有功能
     i. HashSet
 
      1. 底层数据是哈希表
-       2. 通过两个方法hashCode()和equals()保证元素的唯一性，方法自动生成
-       3. 子类LinkedHashSet底层数据结构是链表和哈希表，由链表保证元素有序，
+           2. 通过两个方法hashCode()和equals()保证元素的唯一性，方法自动生成
+                   3. 子类LinkedHashSet底层数据结构是链表和哈希表，由链表保证元素有序，
+
           由哈希表保证元素唯一。
         ii. TreeSet
          1. 底层数据是红黑二叉树
@@ -174,6 +175,7 @@ b) 特有功能
   a) 是否元素唯一
    i. 是：Set
     1. 是否排序
+
        a) 是：TreeSet
        b) 否：HashSet
       如果不知道用哪个Set就用HashSet
@@ -200,6 +202,62 @@ b) 特有功能
 ### Map
 
 <key,value>
+
+Map的输出
+
+```java
+Map<String,String>  map = new HashMap<>();
+Set<Map.entry<String,String>> allSet = map.entrySet();
+Iterator<Map.Entry<String,String>> iter = allSet.iterator();
+while(iter.hasNext())
+{
+    iter.next().getKey()/getValue()
+}
+```
+
+
+
+
+
+### 集合的输出
+
+Iterator
+
+ListIterator
+
+foreach 数组集合都可
+
+```
+Iterator<String> iter = all.iterator();
+while(iter.hasNext())
+{
+	System.out.print(iter.next());
+}
+iter.remove()
+
+```
+
+
+
+### 其他类集
+
+Stack
+
+```java
+empty() boolean
+ 
+peek() E
+
+pop() E
+
+push() E
+
+search() int
+```
+
+
+
+
 
 ## String操作
 
