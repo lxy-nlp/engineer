@@ -89,6 +89,13 @@ grep使用
 ```python
 ps -u | grep key 查找当前用户下 包含key关键字的进程
 kill 进程号 杀死进程
+sudo lsof -i:5000
+```
+
+
+
+```she
+tree directry # 以树状显示文件夹
 ```
 
 
