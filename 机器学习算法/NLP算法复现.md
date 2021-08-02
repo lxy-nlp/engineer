@@ -15,7 +15,7 @@
    ```
 
 
-## 针对SemTask8数据集的任务
+## 第一个点针对SemTask8数据集的任务
 
 实验结果上来看位置编码是有效的,加上位置编码要比没加位置编码的方法的精准率高3%
 
@@ -200,3 +200,139 @@ baseline
 
 
 加入pos_emb后的结果
+
+
+
+
+
+
+
+## NER第二个点子 命名实体识别
+
+### Simplify the Usage of Lexicon in Chinese NER 
+
+针对这篇论文中对
+
+![image-20210707101325844](/home/lxy/文档/学习笔记/img/image-20210707101325844.png)
+
+基于BERT的词典注意力中文命名实体识别
+
+改进的点 ： 词典整合计算-----> 注意力加权替换原来的词频加权
+
+```python
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--embedding',  help='Embedding for words', default='None')
+    parser.add_argument('--status', choices=['train', 'test'], help='update algorithm', default='train')
+    parser.add_argument('--modelpath', default="save_model/")
+    parser.add_argument('--modelname', default="model")
+    parser.add_argument('--savedset', help='Dir of saved data setting', default="data/save.dset")
+    parser.add_argument('--train', default="ResumeNER/train.char.bmes")
+    parser.add_argument('--dev', default="ResumeNER/dev.char.bmes" )
+    parser.add_argument('--test', default="ResumeNER/test.char.bmes")
+    parser.add_argument('--seg', default="True")
+    parser.add_argument('--extendalphabet', default="True")
+    parser.add_argument('--raw')
+    parser.add_argument('--output')
+    parser.add_argument('--seed',default=1023,type=int)
+    parser.add_argument('--labelcomment', default="")
+    parser.add_argument('--resultfile',default="result/result.txt")
+    parser.add_argument('--num_iter',default=100,type=int)
+    parser.add_argument('--num_layer', default=4, type=int)
+    parser.add_argument('--lr', type=float, default=0.0015)
+    parser.add_argument('--batch_size', type=int, default=1)
+    parser.add_argument('--hidden_dim', type=int, default=300)
+    parser.add_argument('--model_type', default='lstm')
+    parser.add_argument('--drop', type=float, default=0.5)
+
+    parser.add_argument('--use_biword', action='store_true', dest='use_biword', default=False)
+    # parser.set_defaults(use_biword=False)
+    parser.add_argument('--use_char', action='store_true', dest='use_char', default=False)
+    # parser.set_defaults(use_biword=False)
+    parser.add_argument('--use_count', action='store_true', default=True)
+    parser.add_argument('--use_bert', action='store_true', default=False)
+
+```
+
+
+
+#### WeiboNER
+
+参数设置
+
+```python
+--train data/ResumeNER/train.char.bmes --dev data/ResumeNER/dev.char.bmes --test data/ResumeNER/test.char.bmes --modelname Resume --savedset data/Resume.dset --hidden_dim 200
+```
+
+
+
+原有的
+
+![image-20210711084640812](/home/lxy/.config/Typora/typora-user-images/image-20210711084640812.png)
+
+
+
+现有的
+
+![image-20210714180227208](/home/lxy/文档/学习笔记/img/image-20210714180227208.png)
+
+![image-20210726074959861](/home/lxy/文档/学习笔记/img/image-20210726074959861.png)
+
+```
+--train data/WeiboNER/train.all.bmes --dev data/WeiboNER/dev.all.bmes --test data/WeiboNER/test.all.bmes --modelname Weibo --savedset data/Weibo.dset --lr=0.005 --hidden_dim 200   --use_bert
+```
+
+![image-20210726124905462](/home/lxy/.config/Typora/typora-user-images/image-20210726124905462.png)
+
+#### MSRA
+
+```python
+--train data/ResumeNER/train.char.bmes --dev data/ResumeNER/dev.char.bmes --test data/ResumeNER/test.char.bmes --modelname Resume --savedset data/Resume.dset --hidden_dim 200 
+```
+
+
+
+![image-20210715085026405](/home/lxy/文档/学习笔记/img/image-20210715085026405.png)
+
+![image-20210715133536380](/home/lxy/文档/学习笔记/img/image-20210715133536380.png)
+
+```python
+--train data/ResumeNER/train.char.bmes --dev data/ResumeNER/dev.char.bmes --test data/ResumeNER/test.char.bmes --modelname Resume --savedset data/Resume.dset --hidden_dim 200 --use_biword  --use_char
+```
+
+ acc: 0.9697, p: 0.9502, r: 0.9472, f: 0.9487
+
+![image-20210715201856230](/home/lxy/文档/学习笔记/img/image-20210715201856230.png)
+
+
+
+```
+--train data/WeiboNER/train.all.bmes --dev data/WeiboNER/dev.all.bmes --test data/WeiboNER/test.all.bmes --modelname Weibo --savedset data/Weibo.dset --lr=0.005 --hidden_dim 200 --use_char --use_biword --model_type cnn
+```
+
+![image-20210724091140321](/home/lxy/.config/Typora/typora-user-images/image-20210724091140321.png)
+
+![image-20210724130431802](/home/lxy/.config/Typora/typora-user-images/image-20210724130431802.png)
+
+
+
+cnn 注意力 + bert
+
+![image-20210726175032666](/home/lxy/.config/Typora/typora-user-images/image-20210726175032666.png)
+
+
+
+cnn+词频+bert
+
+![image-20210727083709100](/home/lxy/文档/学习笔记/img/image-20210727083709100.png)
+
+
+
+
+
+ResumeNER
+
+![image-20210727195049008](/home/lxy/文档/学习笔记/img/image-20210727195049008.png)
+
+
+
+![image-20210728080958900](/home/lxy/.config/Typora/typora-user-images/image-20210728080958900.png)

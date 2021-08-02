@@ -100,6 +100,26 @@ tree directry # 以树状显示文件夹
 
 
 
+U盘挂载
+
+```shell
+fdisk -l 查看U盘位置
+mount /dev/sda4  /mnt 挂载U盘
+umount /mnt 	卸载U盘
+```
+
+scp远程传输
+
+```shell
+# scp /renwole/mariadb.tar.gz root@223.6.6.6:/renwole123/
+root@223.6.6.6’s password:【输入密码回车】
+mariadb.tar.gz 8% 37MB 1.3MB/s 05:29 ETA
+```
+
+
+
+
+
 ## Git
 
 1. 全局配置
