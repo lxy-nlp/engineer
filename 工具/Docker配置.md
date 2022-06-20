@@ -1,5 +1,17 @@
 # **Docker学习**
 
+## 基本概念
+
+容器和镜像
+
+容器 container 可以独立运行的一个或一组应用，镜像创建的运行实例 容器内包含程序以及运行环境
+
+![1654318486789](../img/1654318486789.png)
+
+
+
+![1654318787801](../img/1654318787801.png)
+
 ## Docker速查表
 
 ```shell
@@ -200,6 +212,7 @@ CMD /bin/bash
    MAINTAINER 	镜像是谁写的 姓名 + 邮箱
    RUN		镜像运行时的命令
    ADD		添加内容 比如要安装的tomcat包
+<<<<<<< HEAD
    WORKDIR		镜像的工作目录
    VOLUME		挂载的目录
    EXPOSE		 端口配置
@@ -207,11 +220,52 @@ CMD /bin/bash
    ENTRYPOINT  追加命令
    ONBUILD 
    COPY 			类似ADD 文件
+=======
+   WORKDIR		创建容器后首先进入的工作目录
+   VOLUME		挂载的目录
+   EXPOSE		 端口配置
+   CMD 			指定这个容器时运行的命令,只有最后一个会生效
+   类似于 RUN 指令，用于运行程序，但二者运行的时间点不同:
+   CMD 在docker run 时运行。
+   RUN 是在 docker build。
+   作用：为启动的容器指定默认要运行的程序，程序运行结束，容器也就结束。CMD 指令指定的程序可被 docker run 命令行参数中指定要运行的程序所覆盖。
+   注意：如果 Dockerfile 中如果存在多个 CMD 指令，仅最后一个生效。
+   格式：
+   
+   CMD <shell 命令> 
+   CMD ["<可执行文件或命令>","<param1>","<param2>",...] 
+   CMD ["<param1>","<param2>",...]  # 该写法是为 ENTRYPOINT 指令指定的程序提供默认参数
+   推荐使用第二种格式，执行过程比较明确。第一种格式实际上在运行的过程中也会自动转换成第二种格式运行，并且默认可执行文件是 sh。
+   
+   ENTRYPOINT  追加命令
+   类似于 CMD 指令，但其不会被 docker run 的命令行参数指定的指令所覆盖，而且这些命令行参数会被当作参数送给 ENTRYPOINT 指令指定的程序。
+   但是, 如果运行 docker run 时使用了 --entrypoint 选项，将覆盖 ENTRYPOINT 指令指定的程序。
+   优点：在执行 docker run 的时候可以指定 ENTRYPOINT 运行所需的参数。
+   注意：如果 Dockerfile 中如果存在多个 ENTRYPOINT 指令，仅最后一个生效。
+   格式：
+   ENTRYPOINT ["<executeable>","<param1>","<param2>",...]
+   
+   ONBUILD 
+   COPY 			类似ADD 文件
+   复制指令，从上下文目录中复制文件或者目录到容器里指定路径。
+   COPY [--chown=<user>:<group>] <源路径1>...  <目标路径>
+   COPY [--chown=<user>:<group>] ["<源路径1>",...  "<目标路径>"]
+   
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
    ENV				设置环境变量
    
    ENTRYPOINT 和 CMD 的区别
    CMD ['ls','-a']
    
+<<<<<<< HEAD
+=======
+   RUN <命令行命令>
+   # <命令行命令> 等同于，在终端操作的 shell 命令。
+   RUN ["可执行文件", "参数1", "参数2"]
+   # 例如：
+   # RUN ["./test.php", "dev", "offline"] 等价于 RUN ./test.php dev offline
+   
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
    ```
 
    
@@ -244,8 +298,11 @@ CMD /bin/bash
    docker push lxy/mydocker:version(1.0)
    ```
 
+<<<<<<< HEAD
 ![image-20210203211426496](/home/lxy/.config/Typora/typora-user-images/image-20210203211426496.png)
 
+=======
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
 7. Tomcat实例
 
    ```shell
@@ -268,7 +325,11 @@ CMD /bin/bash
    # 路径中的 : 号起到分割的作用
    ```
 
+<<<<<<< HEAD
    
+=======
+   ![1654338043890](../img/1654338043890.png)
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
 
 ## Pycharm使用Docker搭建的环境
 

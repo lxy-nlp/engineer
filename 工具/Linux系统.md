@@ -61,6 +61,35 @@ ls [-alrtAFR][name...]
 -F 在列出的文件名称后加一符号；例如可执行档则加 "*", 目录则加 "/"
 -R 若目录下有文件，则以下之文件亦皆依序列出
 
+显示文件的三个命令
+cat 
+[root@localhost ~]# cat [选项] 文件名 显示文件
+或者
+[root@localhost ~]# cat 文件1 文件2 > 文件3  合并文件
+-A	相当于 -vET 选项的整合，用于列出所有隐藏符号；
+-E	列出每行结尾的回车符 $；
+-n	对输出的所有行进行编号；
+-b	同 -n 不同，此选项表示只对非空行进行编号。
+-T	把 Tab 键 ^I 显示出来；
+-V	列出特殊字符；
+-s	当遇到有连续 2 行以上的空白行时，就替换为 1 行的空白行。
+
+more
+-f	计算行数时，以实际的行数，而不是自动换行过后的行数。
+-p	不以卷动的方式显示每一页，而是先清除屏幕后再显示内容。
+-c	跟 -p 选项相似，不同的是先显示内容再清除其他旧资料。
+-s	当遇到有连续两行以上的空白行时，就替换为一行的空白行。
+-u	不显示下引号（根据环境变量 TERM 指定的终端而有所不同）。
++n	从第 n 行开始显示文件内容，n 代表数字。
+-n	一次显示的行数，n 代表数字。
+
+less
+
+head
+
+tail
+
+
 rm [options] <name>...
 -i 删除前逐一询问确认
 -f 即使原档案属性设为唯读，亦直接删除，无需逐一确认
@@ -124,6 +153,102 @@ unzip
 # unzip -v abc.zip
 ```
 
+#### 重定向输入与输出
+
+```SHELL
+0	stdin	标准输入	键盘	仅读取
+1	stdout	标准输出	显示屏	仅写入
+2	stderr	错误输出	显示屏	仅写入
+输出重定向
+1>	重定向正确输出，此处的1可以省略
+2>	重定向错误输出
+&>	重定向所有输出
+2>&1	将错误输出编号由2变成1，效果同&>
+>>	追加重定向正确输出
+2>>	追加重定向错误输出
+&>>	追加重定向所有输出
+永久重定向 exec 2>file
+```
+
+#### 查找
+
+```shell
+find 目录  文件名
+
+find   路径  -name   ‘名称’        ##查找查找名字为“名称”的文件
+find   路径  -type [f/d]			##按照类型进行查找
+find   路径  -size +1M				##大于1M
+find   路径  -size -1M				##小于1M
+find   路径  -maxdepth 1 -size +1M	##当前目录大于1M
+find   路径  -maxdepth 2 -size +1M   ##当前目录和一级子目录大于1M
+
+1. 查找所有".h"文件
+
+find /PATH -name "*.h"
+
+2. 查找所有".h"文件中的含有"helloworld"字符串的文件
+
+find /PATH -name "*.h" -exec grep -in "helloworld" {} \;
+
+find /PATH -name "*.h" | xargs grep -in "helloworld"
+
+3. 查找所有".h"和".c"文件中的含有"helloworld"字符串的文件
+
+find /PATH /( -name "*.h" -or -name "*.c" /) -exec grep -in "helloworld" {} \;
+
+4. 查找非备份文件中的含有"helloworld"字符串的文件
+
+find /PATH /( -not -name "*~" /) -exec grep -in "helloworld" {} \;
+
+注：/PATH为查找路径，默认为当前路径。带-exec参数时必须以\;结尾，否则会提示“find: 遗漏“-exec”的参数”。
+
+https://blog.csdn.net/qq_35246620/article/details/79104520
+```
+
+修改文件所有者
+
+chown 用户名 文件名
+
+chgrp 组名 文件名
+
+#### 文件权限
+
+##### 文件类型
+
+-代表文件
+
+d代表目录
+
+l代表链接
+
+c代表字符型设备
+
+b代表块设备
+
+n代表网络设备
+
+##### 权限
+
+r代表对象是可读的
+
+w代表对象是可写的
+
+x代表对象是可执行的
+
+##### 用户
+
+![1654255433940](../img/1654255433940.png)
+
+rwx：文件的属主（设为登录名rich）。
+
+rwx：文件的属组（设为组名rich）。
+
+r-x：系统上其他人。
+
+![1654255614017](../img/1654255614017.png)
+
+
+
 ### 网络操作
 
 ```shell
@@ -152,7 +277,10 @@ rcp [-pr][源文件或目录][目标文件或目录]
 rcp [-pr][源文件或目录...][目标文件]
 -p 　保留源文件或目录的属性，包括拥有者，所属群组，权限与时间。
 -r　递归处理，将指定目录下的文件与子目录一并处理。
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
 ```
 
 ### 磁盘操作
@@ -170,9 +298,20 @@ mount -o loop file.iso /mnt/cdrom 挂载一个文件或ISO镜像文件
 mount -t vfat /dev/hda5 /mnt/hda5 挂载一个Windows FAT32文件系统 
 mount /dev/sda1 /mnt/usbdisk 挂载一个usb 捷盘或闪存设备 
 mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂载一个windows网络共享 
+<<<<<<< HEAD
 df -h 显示已经挂载的分区列表 
 ls -lSr |more 以尺寸大小排列文件和目录 
 du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
+=======
+
+df命令可以让你很方便地查看所有已挂载磁盘的使用情况。
+df -h 显示已经挂载的分区列表 
+ls -lSr |more 以尺寸大小排列文件和目录 
+du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
+    
+du命令可以显示某个特定目录（默认情况下是当前目录）的磁盘使用情况。这一方法可用来快速判断系统上某个目录下是不是有超大文件。
+
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
 du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小 
 rpm -q -a --qf '%10{SIZE}t%{NAME}n' | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统) 
 dpkg-query -W -f='${Installed-Size;10}t${Package}n' | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统) 
@@ -208,6 +347,20 @@ https://blog.csdn.net/qq_35246620/article/details/79104520
 ```
 
 ### grep使用
+### 正则表达式
+
+```shell
+通配符
+c*	将匹配 0 个（即空白）或多个字符 c（c 为任一字符）。
+.	将匹配任何一个字符，且只能是一个字符。
+[xyz]	匹配方括号中的任意一个字符。
+[^xyz]	匹配除方括号中字符外的所有字符。
+^	锁定行的开头。
+$	锁定行的结尾。
+需要注意的是，在基本正则表达式中，如通配符 *、+、{、|、( 和 )等，已经失去了它们原本的含义，而若要恢复它们原本的含义，则要在之前添加反斜杠 \，如 \*、\+、\{、\|、\( 和 \)。
+```
+
+### grep使用 搜索内容
 
 ```shell
 grep []
@@ -227,6 +380,7 @@ grep []
 ```
 
 进程
+### 进程管理
 
 ```python
 ps -u | grep key 查找当前用户下 包含key关键字的进程
@@ -316,3 +470,260 @@ X	采用旧式的Linux i386登陆格式显示程序状况
 3. .gitignore使用
 
    
+
+
+top 
+实时检测进程
+```
+
+### 文本处理工具
+
+```shell
+cut
+-d  指定分隔符
+-f  选取第几列
+
+awk
+-F 指定分隔符
+-v 赋值一个用户变量
+/pattern/{操作语句} pattern可以是正则也可以是判断语句
+cut /etc/passwd | awk -F ":" '/^root/{print $1}'
+内置变量 FILENAME NR 行号 NF 列数
+
+sort
+-b	--ignore-leading-blanks	排序时忽略起始的空白
+-C	--check=quiet	不排序，如果数据无序也不要报告
+-c	--check	不排序，但检查输入数据是不是已排序；未排序的话，报告
+-d	--dictionary-order	仅考虑空白和字母，不考虑特殊字符
+-f	--ignore-case	默认情况下，会将大写字母排在前面；这个参数会忽略大小写
+-g	--general-number-sort	按通用数值来排序（跟-n不同，把值当浮点数来排序，支持科学计数法表示的值）
+-i	--ignore-nonprinting	在排序时忽略不可打印字符
+-k	--key=POS1[,POS2]	排序从POS1位置开始；如果指定了POS2的话，到POS2位置结束
+-M	--month-sort	用三字符月份名按月份排序
+-m	--merge	将两个已排序数据文件合并
+-n	--numeric-sort按字符串数值来排序（并不转换为浮点数）
+-o	--output=file	将排序结果写出到指定的文件中
+-R	--random-sort	按随机生成的散列表的键值排序
+--random-source=FILE	指定-R参数用到的随机字节的源文件
+-r	--reverse	反序排序（升序变成降序）
+-S	--buffer-size=SIZE	指定使用的内存大小
+-s	--stable	禁用最后重排序比较
+-T	--temporary-directory=DIR	指定一个位置来存储临时工作文件
+-t --field-separator=SEP	指定一个用来区分键位置的字符
+-u	--unique	和-c参数一起使用时，检查严格排序；不和-c参数一起用时，仅输出第一例相似的两行
+-z	--zero-terminated	用NULL字符作为行尾，而不是用换行符
+```
+
+### 用户管理
+
+#### 增加用户
+
+```shell
+基本语法	useradd test
+		   passwd  12345
+c comment	给新用户添加备注
+-d home_dir	为主目录指定一个名字（如果不想用登录名作为主目录名的话）
+-e expire_date	用YYYY-MM-DD格式指定一个账户过期的日期
+-f inactive_days	指定这个账户密码过期后多少天这个账户被禁用；0表示密码一过期就立即禁用，1表示禁用这个功能
+-g initial_group	指定用户登录组的GID或组名
+-G group ...指定用户除登录组之外所属的一个或多个附加组
+-k	必须和-m一起使用，将/etc/skel目录的内容复制到用户的HOME目录
+-m	创建用户的HOME目录
+-M	不创建用户的HOME目录（当默认设置里要求创建时才使用这个选项）
+-n	创建一个与用户登录名同名的新组
+-r	创建系统账户
+-p passwd	为用户账户指定默认密码
+-s shell	指定默认的登录shell
+-u uid		为账户指定唯一的UID
+
+更改新用户默认值
+useradd -D -s /bin/tsch
+-b default_home	更改默认的创建用户HOME目录的位置
+-e expiration_date	更改默认的新账户的过期日期
+-f inactive	更改默认的新用户从密码过期到账户被禁用的天数
+-g group	更改默认的组名称或GID
+-s shell	更改默认的登录shell
+```
+
+#### 删除
+
+```shell
+userdel test 只删除用户和密码
+-r 删除该用户的HOME目录和邮件目录
+```
+
+#### 修改
+
+usermod 修改用户账户的字段，还可以指定主要组以及附加组的所属关系
+
+-l修改用户账户的登录名。
+
+-L锁定账户，使用户无法登录。
+
+-p修改账户的密码。
+
+-U解除锁定，使用户能够登录。
+
+passwd	修改已有用户的密码
+
+passwd test
+
+输入密码
+
+chpasswd	从文件中读取登录名密码对，并更新密码
+
+chage	修改密码的过期日期
+
+chfn	修改用户账户的备注信息
+
+chsh	修改用户账户的默认登录shell
+
+#### 切换用户
+
+su -待登录的用户名
+
+exit 返回之前登录的用户
+
+#### 查询用户信息
+
+```shell
+id test
+whoami 查看当前用户信息
+```
+
+#### 用户组相关操作
+
+```shell
+groupadd ttt
+groupdel ttt
+useradd -g ttt test 增加用户到ttt组
+usermod -g 用户组 用户名 修改用户的组
+usermod -g shared test 将当前用户添加到test组 前提是用户没有分配组
+```
+
+权限控制
+
+# Shell编程
+
+## 变量
+
+使用 $var 可以得到变量值
+
+$# 参数个数
+
+​\$0 文件名   \$1第一个参数
+
+\$* 获取全部参数 可作为整体 \$@
+
+\$? 测试上一个命令是否执行成功 成功 0
+
+basename 返回文件名
+
+## 运算符
+
+```shell
+expr 1+5
+expr中可以使用 +-*、<= < >= > % 
+${1 + 5}
+```
+
+## 退出状态码
+
+![1654310155631](../img/1654310155631.png)
+
+## 流程控制
+
+### if then
+
+条件测试 test / [ condition ]
+
+数值比较   -eq -ne -ge -gt -le -lt 
+
+字符串比较 != 	==	<=	 >	-n 长度大于0 		-z  长度等于0
+
+文件类型 -d file -e  -f 
+
+权限 -w -r -x
+
+复合条件测试
+
+[ condition1 ] && / || [ condition2 ]
+
+
+
+if-then语句中使用的高级特性：
+
+用于数学表达式的双括号（（））
+
+（++ -- && || >> <<）
+
+用于高级字符串处理功能的双方括号[[]]
+
+### case
+
+```shell
+case $USER in
+rich | barbara)
+   echo "Welcome, $USER"
+   echo "Please enjoy your visit";;
+testing)
+  echo "Special testing account";;
+jessica)
+   echo "Do not forget to log off when you're done";;
+*) #default
+   echo "Sorry, you are not allowed here";;
+esac # ending
+```
+
+## 处理用户输入
+
+#### 控制台读取
+
+```shell
+read -p "提示语" -s -t 5 varname # -t 限定时间 -s 隐藏输入
+```
+
+#### 文件逐行读取
+
+```shell
+count=1
+cat test | while read line
+do
+   echo "Line $count: $line"
+   count=$[ $count + 1]
+done
+echo "Finished processing the file"
+```
+
+
+
+## 函数
+
+## 文本处理
+
+## 命令替换
+
+shell脚本中最有用的特性之一就是可以从命令输出中提取信息，并将其赋给变量。把输出赋给变量之后，就可以随意在脚本中使用了。这个特性在处理脚本数据时尤为方便。
+
+有两种方法可以将命令输出赋给变量：
+
+反引号字符（`）
+
+$()格式
+
+要注意反引号字符，这可不是用于字符串的那个普通的单引号字符。由于在shell脚本之外很少用到，你可能甚至都不知道在键盘什么地方能找到这个字符。但你必须慢慢熟悉它，因为这是许多shell脚本中的重要组件。提示：在美式键盘上，它通常和波浪线（~）位于同一键位。
+
+命令替换允许你将shell命令的输出赋给变量。
+
+```shell
+testing=`date`
+testing=$(date)
+```
+
+
+
+
+
+
+
+ 

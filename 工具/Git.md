@@ -3,6 +3,7 @@
 ```shell
 # 配置用户信息
 git config --global user.name "lxy-nlp"
+git config --global user.name "lxy"
 git config --global user.email "18261195602@163.com
 git config --list
 
@@ -70,6 +71,7 @@ git remote add origin http://github.com/lxy-nlp/test.git
 # 主要是为了解决 .gitignore不生效的问题
 git rm -r --cached .   # 删除暂存区已经托管的文件
 git rm filepath        # 删除暂存区和工作区的文件
+git rm filepath           # 删除暂存区和工作区的文件
 git rm -r --cached <fold> 不删除本地文件
 
 git rm -r --f <fold> 删除本地文件
