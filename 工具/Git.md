@@ -152,9 +152,14 @@ revert 之后你的本地代码会回滚到指定的历史版本,这时你再 gi
 
 4、本地intellij解决冲突（冲突前的代码，会同时存在你和远端的代码），可以git status查看你当前处在REBASE的分支下。
 
+可使用 git diff --check 或者 git diff --name-only --diff-filter=U查看冲突
+
 5、git add .
 
-6、git rebase --continue
+6、git rebase --continue  $ git rebase --continue 就可以线性的连接本地分支与远程分支，无误之后就回退出，回到主分支上。
+
+
+7、git pull
 
 =======
 >>>>>>> 0125f93... 整理
