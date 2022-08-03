@@ -1,5 +1,9 @@
 # **Docker学习**
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
 ## 基本概念
 
 容器和镜像
@@ -12,6 +16,11 @@
 
 ![1654318787801](../img/1654318787801.png)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 31df02f... 6-7月学习总结
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
 ## Docker速查表
 
 ```shell
@@ -212,6 +221,22 @@ CMD /bin/bash
    MAINTAINER 	镜像是谁写的 姓名 + 邮箱
    RUN		镜像运行时的命令
    ADD		添加内容 比如要安装的tomcat包
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31df02f... 6-7月学习总结
+   WORKDIR		镜像的工作目录
+   VOLUME		挂载的目录
+   EXPOSE		 端口配置
+   CMD 			指定这个容器时运行的命令,只有最后一个会生效
+   ENTRYPOINT  追加命令
+   ONBUILD 
+   COPY 			类似ADD 文件
+<<<<<<< HEAD
+=======
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
    WORKDIR		创建容器后首先进入的工作目录
    VOLUME		挂载的目录
    EXPOSE		 端口配置
@@ -242,17 +267,35 @@ CMD /bin/bash
    COPY [--chown=<user>:<group>] <源路径1>...  <目标路径>
    COPY [--chown=<user>:<group>] ["<源路径1>",...  "<目标路径>"]
    
+<<<<<<< HEAD
+=======
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+>>>>>>> 31df02f... 6-7月学习总结
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
    ENV				设置环境变量
    
    ENTRYPOINT 和 CMD 的区别
    CMD ['ls','-a']
    
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
    RUN <命令行命令>
    # <命令行命令> 等同于，在终端操作的 shell 命令。
    RUN ["可执行文件", "参数1", "参数2"]
    # 例如：
    # RUN ["./test.php", "dev", "offline"] 等价于 RUN ./test.php dev offline
    
+<<<<<<< HEAD
+=======
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+>>>>>>> 31df02f... 6-7月学习总结
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
    ```
 
    
@@ -285,8 +328,21 @@ CMD /bin/bash
    docker push lxy/mydocker:version(1.0)
    ```
 
+<<<<<<< HEAD
 ![image-20210203211426496](/home/lxy/.config/Typora/typora-user-images/image-20210203211426496.png)
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+![image-20210203211426496](/home/lxy/.config/Typora/typora-user-images/image-20210203211426496.png)
+
+=======
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+![image-20210203211426496](/home/lxy/.config/Typora/typora-user-images/image-20210203211426496.png)
+
+>>>>>>> 31df02f... 6-7月学习总结
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
 7. Tomcat实例
 
    ```shell
@@ -309,8 +365,20 @@ CMD /bin/bash
    # 路径中的 : 号起到分割的作用
    ```
 
+<<<<<<< HEAD
    
    ![1654338043890](../img/1654338043890.png)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+   
+=======
+   ![1654338043890](../img/1654338043890.png)
+>>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+   
+>>>>>>> 31df02f... 6-7月学习总结
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
 
 ## Pycharm使用Docker搭建的环境
 

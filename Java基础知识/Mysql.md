@@ -27,4 +27,3 @@ net start mysql 启动服务
 net stop mysql  停止服务
 
 ```
-

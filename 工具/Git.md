@@ -4,9 +4,16 @@
 # 配置用户信息
 <<<<<<< HEAD
 git config --global user.name "lxy-nlp"
+<<<<<<< HEAD
 =======
 git config --global user.name "lxy"
 >>>>>>> 0125f93... 整理
+=======
+<<<<<<< HEAD
+git config --global user.name "lxy"
+=======
+>>>>>>> 31df02f... 6-7月学习总结
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
 git config --global user.email "18261195602@163.com
 git config --list
 
@@ -67,7 +74,11 @@ git remote add origin http://github.com/lxy-nlp/test.git
 3. 推送一个已经存在的仓库到另一个仓库
 待学习
 =======
+<<<<<<< HEAD
 >>>>>>> 0125f93... 整理
+=======
+>>>>>>> 31df02f... 6-7月学习总结
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
 
 ```
 
@@ -79,8 +90,13 @@ git rm -r --cached .   # 删除暂存区已经托管的文件
 <<<<<<< HEAD
 git rm filepath        # 删除暂存区和工作区的文件
 =======
+<<<<<<< HEAD
 git rm filepath           # 删除暂存区和工作区的文件
 >>>>>>> 0125f93... 整理
+=======
+>>>>>>> 31df02f... 6-7月学习总结
+git rm filepath           # 删除暂存区和工作区的文件
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
 git rm -r --cached <fold> 不删除本地文件
 
 git rm -r --f <fold> 删除本地文件
@@ -162,6 +178,10 @@ revert 之后你的本地代码会回滚到指定的历史版本,这时你再 gi
 7、git pull
 
 =======
+<<<<<<< HEAD
 >>>>>>> 0125f93... 整理
+=======
+>>>>>>> 31df02f... 6-7月学习总结
+>>>>>>> 470cf34c3cc25d8c98693ecc6e101ebcb523ecb1
 
 
