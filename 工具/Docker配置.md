@@ -1,5 +1,6 @@
 # **Docker学习**
 
+<<<<<<< HEAD
 ## 基本概念
 
 容器和镜像
@@ -12,6 +13,8 @@
 
 ![1654318787801](../img/1654318787801.png)
 
+=======
+>>>>>>> 31df02f... 6-7月学习总结
 ## Docker速查表
 
 ```shell
@@ -213,6 +216,9 @@ CMD /bin/bash
    RUN		镜像运行时的命令
    ADD		添加内容 比如要安装的tomcat包
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31df02f... 6-7月学习总结
    WORKDIR		镜像的工作目录
    VOLUME		挂载的目录
    EXPOSE		 端口配置
@@ -220,6 +226,7 @@ CMD /bin/bash
    ENTRYPOINT  追加命令
    ONBUILD 
    COPY 			类似ADD 文件
+<<<<<<< HEAD
 =======
    WORKDIR		创建容器后首先进入的工作目录
    VOLUME		挂载的目录
@@ -252,11 +259,14 @@ CMD /bin/bash
    COPY [--chown=<user>:<group>] ["<源路径1>",...  "<目标路径>"]
    
 >>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+>>>>>>> 31df02f... 6-7月学习总结
    ENV				设置环境变量
    
    ENTRYPOINT 和 CMD 的区别
    CMD ['ls','-a']
    
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
    RUN <命令行命令>
@@ -266,6 +276,8 @@ CMD /bin/bash
    # RUN ["./test.php", "dev", "offline"] 等价于 RUN ./test.php dev offline
    
 >>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+>>>>>>> 31df02f... 6-7月学习总结
    ```
 
    
@@ -299,10 +311,15 @@ CMD /bin/bash
    ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ![image-20210203211426496](/home/lxy/.config/Typora/typora-user-images/image-20210203211426496.png)
 
 =======
 >>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+![image-20210203211426496](/home/lxy/.config/Typora/typora-user-images/image-20210203211426496.png)
+
+>>>>>>> 31df02f... 6-7月学习总结
 7. Tomcat实例
 
    ```shell
@@ -326,10 +343,14 @@ CMD /bin/bash
    ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
    
 =======
    ![1654338043890](../img/1654338043890.png)
 >>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+   
+>>>>>>> 31df02f... 6-7月学习总结
 
 ## Pycharm使用Docker搭建的环境
 

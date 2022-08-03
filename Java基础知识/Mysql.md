@@ -20,6 +20,7 @@ https://blog.csdn.net/weidong_y/article/details/80493743
 
 ## 注册及启动服务
 
+<<<<<<< HEAD
 ![image-20220323232023804](F:\GitHome\学习笔记\engineer\img\image-20220323232023804.png)
 ```shell
 首先移动到mysql的bin目录
@@ -29,3 +30,6 @@ net stop mysql  停止服务
 
 ```
 
+=======
+![image-20220323232023804](F:\GitHome\学习笔记\engineer\img\image-20220323232023804.png)
+>>>>>>> 31df02f... 6-7月学习总结

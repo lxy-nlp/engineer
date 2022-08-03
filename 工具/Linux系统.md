@@ -61,6 +61,7 @@ ls [-alrtAFR][name...]
 -F 在列出的文件名称后加一符号；例如可执行档则加 "*", 目录则加 "/"
 -R 若目录下有文件，则以下之文件亦皆依序列出
 
+<<<<<<< HEAD
 显示文件的三个命令
 cat 
 [root@localhost ~]# cat [选项] 文件名 显示文件
@@ -90,6 +91,8 @@ head
 tail
 
 
+=======
+>>>>>>> 31df02f... 6-7月学习总结
 rm [options] <name>...
 -i 删除前逐一询问确认
 -f 即使原档案属性设为唯读，亦直接删除，无需逐一确认
@@ -153,6 +156,7 @@ unzip
 # unzip -v abc.zip
 ```
 
+<<<<<<< HEAD
 #### 重定向输入与输出
 
 ```SHELL
@@ -249,6 +253,8 @@ r-x：系统上其他人。
 
 
 
+=======
+>>>>>>> 31df02f... 6-7月学习总结
 ### 网络操作
 
 ```shell
@@ -278,9 +284,13 @@ rcp [-pr][源文件或目录...][目标文件]
 -p 　保留源文件或目录的属性，包括拥有者，所属群组，权限与时间。
 -r　递归处理，将指定目录下的文件与子目录一并处理。
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+
+>>>>>>> 31df02f... 6-7月学习总结
 ```
 
 ### 磁盘操作
@@ -299,6 +309,7 @@ mount -t vfat /dev/hda5 /mnt/hda5 挂载一个Windows FAT32文件系统
 mount /dev/sda1 /mnt/usbdisk 挂载一个usb 捷盘或闪存设备 
 mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂载一个windows网络共享 
 <<<<<<< HEAD
+<<<<<<< HEAD
 df -h 显示已经挂载的分区列表 
 ls -lSr |more 以尺寸大小排列文件和目录 
 du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
@@ -312,6 +323,11 @@ du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间'
 du命令可以显示某个特定目录（默认情况下是当前目录）的磁盘使用情况。这一方法可用来快速判断系统上某个目录下是不是有超大文件。
 
 >>>>>>> 0125f93f311d1950235db9c9ef40409f88b57890
+=======
+df -h 显示已经挂载的分区列表 
+ls -lSr |more 以尺寸大小排列文件和目录 
+du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
+>>>>>>> 31df02f... 6-7月学习总结
 du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小 
 rpm -q -a --qf '%10{SIZE}t%{NAME}n' | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统) 
 dpkg-query -W -f='${Installed-Size;10}t${Package}n' | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统) 
@@ -347,6 +363,7 @@ https://blog.csdn.net/qq_35246620/article/details/79104520
 ```
 
 ### grep使用
+<<<<<<< HEAD
 ### 正则表达式
 
 ```shell
@@ -361,6 +378,8 @@ $	锁定行的结尾。
 ```
 
 ### grep使用 搜索内容
+=======
+>>>>>>> 31df02f... 6-7月学习总结
 
 ```shell
 grep []
@@ -380,7 +399,10 @@ grep []
 ```
 
 进程
+<<<<<<< HEAD
 ### 进程管理
+=======
+>>>>>>> 31df02f... 6-7月学习总结
 
 ```python
 ps -u | grep key 查找当前用户下 包含key关键字的进程
@@ -469,6 +491,7 @@ X	采用旧式的Linux i386登陆格式显示程序状况
 
 3. .gitignore使用
 
+<<<<<<< HEAD
    
 
 
@@ -727,3 +750,6 @@ testing=$(date)
 
 
  
+=======
+   
+>>>>>>> 31df02f... 6-7月学习总结
