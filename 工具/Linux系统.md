@@ -600,6 +600,11 @@ cut /etc/passwd | awk -F ":" '/^root/{print $1}'
 ```
 #### sort
 ```shell
+-n	--numeric-sort按字符串数值来排序（并不转换为浮点数）
+-r	--reverse	反序排序（升序变成降序）
+-t --field-separator=SEP	指定一个用来区分键位置的字符
+-k	--key=POS1[,POS2]	排序从POS1位置开始；如果指定了POS2的话，到POS2位置结束
+-u	--unique	和-c参数一起使用时，检查严格排序；不和-c参数一起用时，仅输出第一例相似的两行
 
 -b	--ignore-leading-blanks	排序时忽略起始的空白
 -C	--check=quiet	不排序，如果数据无序也不要报告
@@ -608,19 +613,14 @@ cut /etc/passwd | awk -F ":" '/^root/{print $1}'
 -f	--ignore-case	默认情况下，会将大写字母排在前面；这个参数会忽略大小写
 -g	--general-number-sort	按通用数值来排序（跟-n不同，把值当浮点数来排序，支持科学计数法表示的值）
 -i	--ignore-nonprinting	在排序时忽略不可打印字符
--k	--key=POS1[,POS2]	排序从POS1位置开始；如果指定了POS2的话，到POS2位置结束
 -M	--month-sort	用三字符月份名按月份排序
 -m	--merge	将两个已排序数据文件合并
--n	--numeric-sort按字符串数值来排序（并不转换为浮点数）
 -o	--output=file	将排序结果写出到指定的文件中
 -R	--random-sort	按随机生成的散列表的键值排序
 --random-source=FILE	指定-R参数用到的随机字节的源文件
--r	--reverse	反序排序（升序变成降序）
 -S	--buffer-size=SIZE	指定使用的内存大小
 -s	--stable	禁用最后重排序比较
 -T	--temporary-directory=DIR	指定一个位置来存储临时工作文件
--t --field-separator=SEP	指定一个用来区分键位置的字符
--u	--unique	和-c参数一起使用时，检查严格排序；不和-c参数一起用时，仅输出第一例相似的两行
 -z	--zero-terminated	用NULL字符作为行尾，而不是用换行符
 ```
 ![cut分割](_v_images/20220804200053946_1827772119.png)
@@ -791,7 +791,7 @@ ${1 + 5}
 
 文件类型 -d file -e  -f 
 
-权限 -w -r -x
+权限 -w -r -x [ -w param.sh]
 
 复合条件测试
 
@@ -806,6 +806,18 @@ if-then语句中使用的高级特性：
 （++ -- && || >> <<）
 
 用于高级字符串处理功能的双方括号[[]]
+
+```shell
+if [ $1 -eq 1 ]
+then
+        echo "you"
+elif [ $1 -eq 2 ]
+then
+        echo "me"
+else
+        echo "it"
+fi
+```
 
 ### case
 
@@ -823,6 +835,33 @@ jessica)
 esac # ending
 ```
 
+### for循环
+```shell
+#!/bin/bash
+s=0
+for((i=0;i<=100;i++))
+do
+        s=$[ $s+$i ]
+done
+echo $s
+```
+```shell
+#!/bin/bash
+for i in "$*"
+do
+  echo "I like $i"
+done
+
+for j in "$@"
+do
+  echo "I like $j"
+done
+```
+
+### while循环
+
+
+
 ## 处理用户输入
 
 #### 控制台读取
@@ -830,6 +869,7 @@ esac # ending
 ```shell
 read -p "提示语" -s -t 5 varname # -t 限定时间 -s 隐藏输入
 ```
+
 
 #### 文件逐行读取
 
@@ -861,6 +901,23 @@ $()格式
 testing=`date`
 testing=$(date)
 ```
+## 函数
+### 内置函数
+filepath = /path/file
+basename filepath --> file
+dirname  filepath --> path
+### 自定义函数
+```shell
+#!/bin/bash
+function sum()
+{
+  s=0;
+  s=$[ $1+$2 ]
+  echo $s
+}
+sum 1 2
+```
+
 ## awk
 用于文本和数据处理的编程语言
 ### awk命令格式和选项
@@ -919,3 +976,10 @@ ORS  #输出记录分割符，默认换行符
   * 空格	字符串连接符
   * ?:	C条件表达式
   * in	数组中是否存在某键值
+### 例子
+```shell
+awk -F : '/^root/{print $7}' passwd
+awk -F : 'BEGIN{print "user,shell"} {print $7} {print "dage"}' passwd
+awk -F : 'BEGIN{print "userid"} {print $3+1}' passwd
+```
+![img_2.png](img_2.png)
