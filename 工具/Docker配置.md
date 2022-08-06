@@ -29,11 +29,6 @@ docker start 																															  # 开启容器
 docker exec -it container_name /bin/bash 															    # 进入容器
 docker run --gpus all image_name 
 ```
-
-
-
-
-
 ## **Docker配置**
 
 ### 下载 安装 卸载

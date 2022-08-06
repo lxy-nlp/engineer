@@ -1,4 +1,103 @@
 # Linux命令
+## 命令速查
+```shell
+ls -l 
+ls -a ls -la
+ls -lt  带时间
+ls -l 正则表达式
+
+文件类型
+d dirs 
+- 普通文件
+c 接口设备
+s 套接字
+p 管道文件
+l 链接文件
+b 块文件
+
+用户
+user group other
+u owner
+g group
+o other
+a all
+
+权限
+r read    4
+w write   2
+x execute 1
+更改权限  
+chmod u+rwx filename
+chmod 777 filename
+更改文件所有者
+chown -R user/userId  dir/file
+更改文件所有组
+chgrp group/groupId   dir/file
+
+查找文件
+find -name /path "filename"
+find -name /path ".xml" | grep 
+
+find -user
+     -group
+     -uid
+     -gid
+     -type
+
+file filename   查看文件类型
+
+locate filename   定位文件
+which command     定位命令位置
+whereis locate  
+
+head -n number filename 查看前n行数据
+tail -n number filename 查看后n行数据
+tail -f filename        实时查看文件数据
+less filename           类似于向下滚动数据
+
+cat -n                  查看文本数据带行号
+    -b                  不包括空行 
+      
+tar -czf  fileToZip     压缩
+tar -zxf  fileToUnzip   解压
+
+mv filename newname 文件改名
+mv filename path    移动文件
+
+rm filename
+rmdir dir
+cp file path
+  -i 交互提示
+  -r 递归
+  -f 强制  
+
+mkdir -p /d1/d2/d3  创建多级目录
+
+
+查看环境变量
+env --所有的环境变量
+$PATH -- 查看指定的环境变量
+
+grep -i 
+    
+
+
+```
+
+## Linux 路径说明
+可以使用 cat 命令查看内容
+/etc/hosts: 配置网站及ip地址
+/etc/passwd：账户信息（目前笔者还不知道里面有具体信息，看不太懂）
+/etc/shadow：账户密码，不过是加密了的
+/etc/group：所有组名 
+~/.bashrc   当前用户环境变量
+/etc/profile  系统环境变量
+/bin        二进制目录 用户GNU目录
+/boot       启动目录
+/etc        系统配置文件
+、
+
+
 ## 编辑环境变量
 /root/.bashrc中包括环境变量
 
@@ -44,9 +143,6 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
 
 ## 常见Linux命令
 
-### 文件操作
-
-<<<<<<< HEAD
 ### 关机 重启 操作
 
 ```shell
@@ -55,10 +151,7 @@ sync			将内存的数据同步到磁盘
 shutdown -r now 重启
 reboot		重启
 
-
 ```
-
-
 
 ### 文件操作
 
@@ -288,6 +381,8 @@ rcp [-pr][源文件或目录][目标文件或目录]
 rcp [-pr][源文件或目录...][目标文件]
 -p 　保留源文件或目录的属性，包括拥有者，所属群组，权限与时间。
 -r　递归处理，将指定目录下的文件与子目录一并处理。
+2. 从远程复制到本地
+scp -r root@remoteIp:/remotepath  localpath
 
 ```
 
@@ -306,14 +401,6 @@ mount -o loop file.iso /mnt/cdrom 挂载一个文件或ISO镜像文件
 mount -t vfat /dev/hda5 /mnt/hda5 挂载一个Windows FAT32文件系统 
 mount /dev/sda1 /mnt/usbdisk 挂载一个usb 捷盘或闪存设备 
 mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂载一个windows网络共享
-df -h 显示已经挂载的分区列表 
-ls -lSr |more 以尺寸大小排列文件和目录 
-du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
-
-df -h 显示已经挂载的分区列表 
-ls -lSr |more 以尺寸大小排列文件和目录 
-du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
-
 
 df命令可以让你很方便地查看所有已挂载磁盘的使用情况。
 df -h 显示已经挂载的分区列表 
@@ -321,7 +408,7 @@ ls -lSr |more 以尺寸大小排列文件和目录
 du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
     
 du命令可以显示某个特定目录（默认情况下是当前目录）的磁盘使用情况。这一方法可用来快速判断系统上某个目录下是不是有超大文件。
-
+du -T 查看文件类型
 
 df -h 显示已经挂载的分区列表 
 ls -lSr |more 以尺寸大小排列文件和目录 
@@ -357,9 +444,6 @@ find /PATH /( -not -name "*~" /) -exec grep -in "helloworld" {} \;
 
 https://blog.csdn.net/qq_35246620/article/details/79104520
 ```
-
-### grep使用
-
 ### 正则表达式
 
 ```shell
@@ -371,6 +455,40 @@ c*	将匹配 0 个（即空白）或多个字符 c（c 为任一字符）。
 ^	锁定行的开头。
 $	锁定行的结尾。
 需要注意的是，在基本正则表达式中，如通配符 *、+、{、|、( 和 )等，已经失去了它们原本的含义，而若要恢复它们原本的含义，则要在之前添加反斜杠 \，如 \*、\+、\{、\|、\( 和 \)。
+
+tolstoy    
+^tolstoy    出现在一行的开头
+tolstoy$               结尾
+[Tt]olstoy  查找Tolstoy 或 tolstoy
+tol.toy     tol 和 toy中间加上任一字符
+tol.*toy    中间有0个或多个字符
+
+多次匹配
+单个字符的匹配  grep 'o\{0,2\}' test.txt 
+This is a test cat
+to do something
+do nothing
+happy do sth
+```
+单个元素 多次匹配
+![多次匹配](_v_images/20220804190640670_1648928604.png)
+
+多个元素 多次匹配
+![多个元素匹配](_v_images/20220804194503383_113489599.png)
+示例
+```shell
+test 内容
+This is a test cat
+to do something
+do nothing
+happy do sth
+
+grep thing$ test.txt 
+    to do something
+    do nothing
+
+grep -i is test.txt 
+    This is a test cat
 ```
 
 ### grep使用 搜索内容
@@ -391,7 +509,6 @@ grep []
 -o	与-b结合使用，打印匹配的词据文件头部的偏移量，以字节为单位
 ```
 
-进程
 ### 进程管理
 
 ```python
@@ -463,46 +580,27 @@ X	采用旧式的Linux i386登陆格式显示程序状况
 --widty <每列字符数>	此选项的效果和指定”-cols”选项相同
 ```
 
-
-
-
-
-## Git
-
-1. 全局配置
-
-   ```shell
-   git config 
-   ```
-
-   
-
-2. 版控操作
-
-3. .gitignore使用
-
-   
-
-
-top 
-实时检测进程
-```
-
 ### 文本处理工具
-
+#### cut
 ```shell
 cut
 -d  指定分隔符
 -f  选取第几列
+```
 
-awk
+#### awk
+```shell
+
+
 -F 指定分隔符
 -v 赋值一个用户变量
 /pattern/{操作语句} pattern可以是正则也可以是判断语句
 cut /etc/passwd | awk -F ":" '/^root/{print $1}'
 内置变量 FILENAME NR 行号 NF 列数
+```
+#### sort
+```shell
 
-sort
 -b	--ignore-leading-blanks	排序时忽略起始的空白
 -C	--check=quiet	不排序，如果数据无序也不要报告
 -c	--check	不排序，但检查输入数据是不是已排序；未排序的话，报告
@@ -525,7 +623,34 @@ sort
 -u	--unique	和-c参数一起使用时，检查严格排序；不和-c参数一起用时，仅输出第一例相似的两行
 -z	--zero-terminated	用NULL字符作为行尾，而不是用换行符
 ```
+![cut分割](_v_images/20220804200053946_1827772119.png)
 
+#### sed 操作
+当sed处理文件路径时 使用  ;/ 即用分号作为限定符
+要操作的行 (正则条件) 具体操作（s,a,i,d,c）
+
+替换 加g变成全局替换
+![sed 替换](_v_images/20220804200727338_449805008.png)
+
+指定行替换
+![sed 指定行](_v_images/20220804201023305_533847357.png)
+![sed 删除](_v_images/20220804201139851_1522292713.png)
+
+sed '/Pony/\!d' test.txt    \! 反选    /Pony/    表示正则
+i 插队    a 排队
+![插入一行](_v_images/20220804201751030_1346363276.png)
+整行替换
+![sed 整行替换](_v_images/20220804202133259_6499400.png)
+
+![sed 打印行](_v_images/20220804202314350_900196914.png)
+#### wc
+![img_1.png](img_1.png)
+-l  行数  -w 字数 -c 字符数
+#### head 和 tail
+提取开头和结尾
+head -n 行数 filenames
+tail -n 行数 filenames
+tail -f filenames   实时监控
 ### 用户管理
 
 #### 增加用户
@@ -613,7 +738,18 @@ usermod -g 用户组 用户名 修改用户的组
 usermod -g shared test 将当前用户添加到test组 前提是用户没有分配组
 ```
 
-权限控制
+#### 变量
+env     所有的环境变量 
+$PATH   查看env中某个变量
+
+##### 设置环境变量
+1. 在/etc/profile文件中添加变量【对所有用户生效(永久的)】
+2. 在用户目录下的.bashrc 文件中增加变量【对单一用户生效(永久的)】 
+export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib
+3. source 文件名    立即生效 
+
+set 变量提升为全局变量
+unset 变量降级为
 
 # Shell编程
 
@@ -707,12 +843,6 @@ done
 echo "Finished processing the file"
 ```
 
-
-
-## 函数
-
-## 文本处理
-
 ## 命令替换
 
 shell脚本中最有用的特性之一就是可以从命令输出中提取信息，并将其赋给变量。把输出赋给变量之后，就可以随意在脚本中使用了。这个特性在处理脚本数据时尤为方便。
@@ -731,3 +861,61 @@ $()格式
 testing=`date`
 testing=$(date)
 ```
+## awk
+用于文本和数据处理的编程语言
+### awk命令格式和选项
+```shell
+awk [options] 'script' var=value file(s)
+awk [options] -f scriptfile var=value file(s)
+```
+-F fs fs指定输入分隔符，fs可以是字符串或正则表达式，如-F:，默认的分隔符是连续的空格或制表符
+-v var=value 赋值一个用户定义变量，将外部变量传递给awk
+-f scripfile 从脚本文件中读取awk命令
+-m[fr] val 对val值设置内在限制，-mf选项限制分配给val的最大块数目；-mr选项限制记录的最大数目。这两个功能是Bell实验室版awk的扩展功能，在标准awk中不适用。
+### awk的工作原理
+awk 'BEGIN{ commands } pattern{ commands } END{ commands }'
+BEGIN pattern 和 END三者可选 不是必须的
+第一步执行BEGIN 语句
+第二步从文件或标准输入读取一行，然后再执行pattern语句，逐行扫描文件到文件全部被读取
+第三步执行END语句
+
+### 内置变量
+```shell
+$0   #当前记录
+$1~$n #当前记录的第N个字段
+FS   #输入字段分隔符（-F相同作用）默认空格
+RS   #输入记录分割符，默认换行符
+NF   #字段个数就是列
+NR   #记录数，就是行号，默认从1开始
+OFS  #输出字段分隔符，默认空格
+ORS  #输出记录分割符，默认换行符  
+```
+### 外部变量
+```shell
+[mingongge@ ~]#a=100
+[mingongge@ ~]#b=100
+[mingongge@ ~]#echo |awk '{print v1*v2 }' v1=$a v2=$b
+10000
+```
+### 算术运算
+说明，所有用作算术运算符 进行操作，操作数自动转为数值，所有非数值都变为0。
+- 赋值运算符
+= += -= *= /= %= ^= **=	赋值语句
+- 逻辑运算符
+||	逻辑或
+&&	逻辑与
+- 正则运算符
+~ ~!	匹配正则表达式和不匹配正则表达式
+- 关系运算符
+< <= > >= != ==	关系运算符
+- 算术运算符
+  * \+ -	加，减
+  * \*/ &	乘，除与求余
+  * \ + - !	一元加，减和逻辑非
+  *  ^ ***	求幂
+  *  ++ --	增加或减少，作为前缀或后缀
+- 其它运算符
+  * $	字段引用
+  * 空格	字符串连接符
+  * ?:	C条件表达式
+  * in	数组中是否存在某键值
