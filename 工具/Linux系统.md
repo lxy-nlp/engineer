@@ -590,8 +590,6 @@ cut
 
 #### awk
 ```shell
-
-
 -F 指定分隔符
 -v 赋值一个用户变量
 /pattern/{操作语句} pattern可以是正则也可以是判断语句
@@ -797,8 +795,6 @@ ${1 + 5}
 
 [ condition1 ] && / || [ condition2 ]
 
-
-
 if-then语句中使用的高级特性：
 
 用于数学表达式的双括号（（））
@@ -983,3 +979,6 @@ awk -F : 'BEGIN{print "user,shell"} {print $7} {print "dage"}' passwd
 awk -F : 'BEGIN{print "userid"} {print $3+1}' passwd
 ```
 ![img_2.png](img_2.png)
+
+## 特殊文件
+/dev/null bit bucket
