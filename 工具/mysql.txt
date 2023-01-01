@@ -1,0 +1,7 @@
+create user 'lxy@localhost' identified by 'password';
+alter user 'lxy@localhost' identified with mysql_native_password by 'newpwd'
+drop user 'lxy@localhost'
+
+show grants for 'lxy@localhost'
+grant all on db.tab to 'lxy@localhost'
+revoke delete on db.tab from 'lxy@localhost'
